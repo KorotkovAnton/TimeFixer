@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TimeFixer</string>
+
+    <string name="deed_image">deed_image</string>
+    <string name="add_date_button">add_date_button</string>
+    <string name="add_deed">Add deed</string>
+    <string name="name">Name</string>
+    <string name="max_count">Max count</string>
+</resources>

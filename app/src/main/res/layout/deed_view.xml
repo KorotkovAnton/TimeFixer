@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/name_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#ECECEC"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/deed_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/deed_image"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_title"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.3333"
+        app:srcCompat="@android:drawable/screen_background_light_transparent" />
+
+    <ru.korotkov.timefixer.views.SeekArc
+        android:id="@+id/deed_progress"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="20dp"
+        app:arcWidth="2dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toEndOf="@+id/deed_image"
+        app:layout_constraintTop_toBottomOf="@+id/name_title"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.3333"
+        app:roundEdges="true"
+        app:progressWidth="5dp"
+        app:rotation="180"
+        app:startAngle="45"
+        app:sweepAngle="270" />
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/addDate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/add_date_button"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deed_progress"
+        app:layout_constraintTop_toBottomOf="@+id/name_title"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.3333"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/lastDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#ECECEC"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deed_progress" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
