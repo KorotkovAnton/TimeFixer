@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddDeedActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".IconChooserActivity"/>
     </application>
 
 </manifest>
