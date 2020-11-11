@@ -1,18 +1,24 @@
 package ru.korotkov.timefixer
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.Slide
 import android.view.Gravity
-import android.widget.Button
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.addTextChangedListener
 import ru.korotkov.timefixer.db.DeedsDbHelper
-import kotlin.math.max
 
 class AddDeedActivity : AppCompatActivity() {
+    private lateinit var name: EditText
+    private lateinit var maxCount: EditText
+    private var menu: Menu? = null
+    private var correctName: Boolean = false
+    private var correctMaxCount: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,30 +30,60 @@ class AddDeedActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        val name = findViewById<EditText>(R.id.name_input)
-        val maxCount = findViewById<EditText>(R.id.max_count_input)
-        findViewById<Button>(R.id.add_deed_btn).setOnClickListener {
-            when {
-                name.text.toString().isEmpty() -> {
-                    Toast.makeText(this, "Name is required", LENGTH_SHORT).show()
-                }
-                maxCount.text.toString().isEmpty() -> {
-                    Toast.makeText(this, "Max count is required", LENGTH_SHORT).show()
-                }
-                maxCount.text.toString().toInt() > 99 -> {
-                    Toast.makeText(this, "Max count should be less then 100", LENGTH_SHORT).show()
-                }
-                else -> {
-                    DeedsDbHelper.getInstance(this).addDeed(name.text.toString(), maxCount.text.toString().toInt())
-                    onBackPressed()
-                }
-            }
+        name = findViewById(R.id.name_input)
+        maxCount = findViewById(R.id.max_count_input)
+        changeTintColor(name, false)
+        changeTintColor(maxCount, false)
+
+        name.addTextChangedListener(afterTextChanged = {
+            correctName = it.toString().isNotEmpty()
+            changeTintColor(name, correctName)
+            enableOrDisableCreateBtn()
+        })
+
+        maxCount.addTextChangedListener(afterTextChanged = {
+            correctMaxCount = (it.toString().isNotEmpty() && it.toString().toInt() < 100)
+            changeTintColor(maxCount, correctMaxCount)
+            enableOrDisableCreateBtn()
+        })
+    }
+
+    private fun enableOrDisableCreateBtn() {
+        menu?.findItem(R.id.create_deed_menu_item)?.isEnabled = correctMaxCount && correctName
+    }
+
+    private fun changeTintColor(textEdit: EditText, correct: Boolean) {
+        when (correct) {
+            true -> textEdit.background.setTint(Color.BLACK)
+            false -> textEdit.background.setTint(Color.RED)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        this.menu = menu;
+        menuInflater.inflate(R.menu.add_deed, menu)
+        menu?.findItem(R.id.create_deed_menu_item)?.isEnabled = false
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.create_deed_menu_item -> {
+                DeedsDbHelper.getInstance(this)
+                    .addDeed(name.text.toString(), maxCount.text.toString().toInt())
+                val intent = Intent()
+                intent.putExtra("created", true)
+                setResult(RESULT_OK, intent)
+                finish()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setAnimation() {

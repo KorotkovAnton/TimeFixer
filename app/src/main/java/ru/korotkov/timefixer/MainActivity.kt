@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import ru.korotkov.timefixer.db.DeedsDbHelper
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var deedsViewAdapter: DeedsViewAdapter
     private lateinit var dbHelper: DeedsDbHelper
@@ -33,13 +32,8 @@ class MainActivity : AppCompatActivity() {
         val deedsListRecyclerView = findViewById<RecyclerView>(R.id.deedsList)
         deedsListRecyclerView.adapter = deedsViewAdapter
         deedsListRecyclerView.layoutManager = LinearLayoutManager(this)
+        deedsListRecyclerView.setHasFixedSize(true)
         ItemTouchHelper(callback).attachToRecyclerView(deedsListRecyclerView)
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        deedsViewAdapter.reloadDeeds()
-        deedsViewAdapter.notifyItemRangeInserted(0, 1)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,10 +45,23 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.add_deed_menu_icon -> {
                 val intent = Intent(this, AddDeedActivity::class.java)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                startActivityForResult(
+                    intent,
+                    1,
+                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+                )
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data == null) return
+        if (data.getBooleanExtra("created", false)) {
+            deedsViewAdapter.reloadDeeds()
+            deedsViewAdapter.notifyItemRangeInserted(0, 1)
         }
     }
 
