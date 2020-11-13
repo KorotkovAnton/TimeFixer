@@ -26,7 +26,7 @@
         app:layout_constraintWidth_percent="0.3333"
         app:srcCompat="@android:drawable/screen_background_light_transparent" />
 
-    <ru.korotkov.timefixer.views.SeekArc
+    <ru.korotkov.timefixer.customViews.SeekArc
         android:id="@+id/deed_progress"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -1,9 +1,10 @@
-package ru.korotkov.timefixer
+package ru.korotkov.timefixer.pages.main
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.korotkov.timefixer.R
 import ru.korotkov.timefixer.db.DeedsDbHelper
 import ru.korotkov.timefixer.dto.Deed
 import java.lang.ref.WeakReference

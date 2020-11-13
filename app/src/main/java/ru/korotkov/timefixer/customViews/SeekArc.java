@@ -1,4 +1,4 @@
-package ru.korotkov.timefixer.views;
+package ru.korotkov.timefixer.customViews;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -1,10 +1,12 @@
-package ru.korotkov.timefixer
+package ru.korotkov.timefixer.pages.iconChooser
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import ru.korotkov.timefixer.R
+import ru.korotkov.timefixer.utils.setAnimation
 
 class IconChooserActivity : AppCompatActivity() {
     private var menu: Menu? = null

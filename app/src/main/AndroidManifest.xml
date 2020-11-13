@@ -11,14 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:icon">
-        <activity android:name=".MainActivity">
+        <activity android:name="ru.korotkov.timefixer.pages.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddDeedActivity" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".IconChooserActivity"/>
+        <activity android:name=".pages.addDeed.AddDeedActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".pages.iconChooser.IconChooserActivity"/>
     </application>
 
 </manifest>

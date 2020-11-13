@@ -1,4 +1,4 @@
-package ru.korotkov.timefixer
+package ru.korotkov.timefixer.utils
 
 import android.transition.Slide
 import android.view.Gravity

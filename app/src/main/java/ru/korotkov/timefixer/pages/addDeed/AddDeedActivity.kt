@@ -1,4 +1,4 @@
-package ru.korotkov.timefixer
+package ru.korotkov.timefixer.pages.addDeed
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -13,7 +13,10 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.addTextChangedListener
+import ru.korotkov.timefixer.pages.iconChooser.IconChooserActivity
+import ru.korotkov.timefixer.R
 import ru.korotkov.timefixer.db.DeedsDbHelper
+import ru.korotkov.timefixer.utils.setAnimation
 
 class AddDeedActivity : AppCompatActivity() {
     private lateinit var name: EditText

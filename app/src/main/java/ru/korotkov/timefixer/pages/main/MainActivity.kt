@@ -1,4 +1,4 @@
-package ru.korotkov.timefixer
+package ru.korotkov.timefixer.pages.main
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
+import ru.korotkov.timefixer.pages.addDeed.AddDeedActivity
+import ru.korotkov.timefixer.R
 import ru.korotkov.timefixer.db.DeedsDbHelper
 
 class MainActivity : AppCompatActivity() {

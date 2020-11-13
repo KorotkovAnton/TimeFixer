@@ -1,4 +1,4 @@
-package ru.korotkov.timefixer
+package ru.korotkov.timefixer.pages.main
 
 import android.animation.ArgbEvaluator
 import android.graphics.Color
@@ -6,8 +6,9 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.korotkov.timefixer.R
 import ru.korotkov.timefixer.dto.Deed
-import ru.korotkov.timefixer.views.SeekArc
+import ru.korotkov.timefixer.customViews.SeekArc
 import java.text.SimpleDateFormat
 import java.util.*
 
